@@ -121,6 +121,8 @@ We appreciate your business!
     });
 
     res.status(200).json({ success: true, data });
+
+    console.log("ORDER EMAIL SENT", data )
   } catch (error: any) {
     console.error("Order email sending error:", error);
     res.status(500).json({ error: error.message });
