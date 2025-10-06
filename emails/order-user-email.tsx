@@ -85,7 +85,7 @@ export const OrderConfirmationEmail = ({
                 </tr>
               </thead>
               <tbody>
-                {items.map((item, index) => (
+                { items&&items?.map((item, index) => (
                   <tr key={index}>
                     <td style={td}>{item.productName}</td>
                     <td style={tdCenter}>{item.quantity}</td>
