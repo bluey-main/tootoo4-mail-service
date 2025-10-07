@@ -30,7 +30,7 @@ export const OrderConfirmationEmail = ({
   customerName = "John Doe",
   orderId = "ORD-12345",
   items = [
-    { productName: "Leather Strap Watch", quantity: 1, price: 129.99 },
+    { productName: "Leather Strap  Watch", quantity: 1, price: 129.99 },
     { productName: "Silver Chain Bracelet", quantity: 2, price: 49.99 },
   ],
   total = 229.97,
