@@ -66,7 +66,7 @@ app.post("/send-email", sendEmailHandler);
 // ---------------- ORDER CONFIRMATION ENDPOINT ----------------
 
 interface OrderProduct {
-  name: string;
+  productName: string;
   price: number;
   quantity: number;
 }
@@ -74,7 +74,7 @@ interface OrderProduct {
 interface OrderEmailData {
   customer_name: string;
   order_id: string;
-  products: OrderProduct[];
+  items: OrderProduct[];
   total: number;
   note?: string;
 }
@@ -91,9 +91,9 @@ const sendOrderEmailHandler = async (req: Request, res: Response): Promise<void>
     const emailHtml = await render(React.createElement(OrderConfirmationEmail, orderData));
 
     // Plain text fallback
-    const productLines = orderData.products
+    const productLines = orderData.items
       .map(
-        (p) => `${p.name} — ${p.quantity} × $${p.price.toFixed(2)} = $${(p.price * p.quantity).toFixed(2)}`
+        (p) => `${p.productName} — ${p.quantity} × $${p.price.toFixed(2)} = $${(p.price * p.quantity).toFixed(2)}`
       )
       .join("\n");
 
