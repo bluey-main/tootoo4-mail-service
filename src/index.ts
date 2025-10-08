@@ -6,6 +6,7 @@ import { render } from "@react-email/render";
 import ContactEmail from "../emails/contact-email";
 import { OrderConfirmationEmail } from "../emails/order-user-email"; // ✅ import your new email template
 import React from "react";
+import { cleanUp } from "./functions";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+cleanUp()
 
 // ---------------- CONTACT EMAIL ENDPOINT ----------------
 
@@ -72,7 +74,7 @@ interface OrderProduct {
 }
 
 interface OrderEmailData {
-  customer_name: string;
+  customerName: string;
   order_id: string;
   items: OrderProduct[];
   total: number;
@@ -100,7 +102,7 @@ const sendOrderEmailHandler = async (req: Request, res: Response): Promise<void>
     const emailText = `
 Order Confirmation - ${orderData.order_id}
 
-Hello ${orderData.customer_name},
+Hello ${orderData.customerName},
 
 Thank you for your purchase! Here are your order details:
 
